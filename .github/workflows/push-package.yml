@@ -9,9 +9,11 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
         with:
-          node-version: 12
+          node-version: 16
           registry-url: https://npm.pkg.github.com/
-      - run: cd sample-packages/npm; cd npm ci
-      - run: cd sample-packages/npm; npm publish
+      - run: cd npm ci
+        working-directory: sample-packages/npm
+      - run: npm publish
+        working-directory: sample-packages/npm
         env:
           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
